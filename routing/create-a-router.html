@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Router | Vanilla Router Dom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    <link rel="stylesheet" href="./../dist/styles/main.css">
+    <link rel="stylesheet" href="./../dist/styles/highlight.css">
+    <script src="./../dist/js/highlight.js"></script>
+
+    <meta name="description" content="Learn how to create a client-side router using the vanilla Router Dom library. Here's exactly what you need to do to use this library.">
+
+    <link rel="icon" href="./../dist/icon.svg">
+</head>
+<body>
+    
+    <aside id="sidebar">
+        <div class="sidebar-content">
+            <span class="sidebar-divider">Get Started</span>
+            <a href="./../start/overview" class="sidebar-item">
+                <span>Feature Overview</span>
+            </a>
+            <a href="./../start/faqs" class="sidebar-item">
+                <span>Faqs</span>
+            </a>
+            <a href="./../start/examples" class="sidebar-item">
+                <span>Examples</span>
+            </a>
+            <a href="./../start/installation" class="sidebar-item">
+                <span>Installation</span>
+            </a>
+
+            <span class="sidebar-divider">Routing</span>
+            <a href="./create-a-router" class="sidebar-item active">
+                <span>Create a Router</span>
+            </a>
+            <a href="./giving-a-link" class="sidebar-item">
+                <span>Giving a Link</span>
+            </a>
+            
+            <span class="sidebar-divider">Guides</span>
+            <a href="./../guides/server-configuration" class="sidebar-item">
+                <span>Server-side Configuration</span>
+            </a>
+            <a href="./../guides/contributing" class="sidebar-item">
+                <span>Contributing</span>
+            </a>
+
+        </div>
+    </aside>
+
+    <div class="sidebar-backdrop sidebar-toggle"></div>
+
+    <main id="content">
+        <header id="header">
+            <div class="header-left">
+                <span class="sidebar-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </span>
+                <a href="./../" class="header-logo">
+                    <img src="../dist/logo.svg" alt="Vanilla Router Logo">
+                </a>
+            </div>
+            <div class="header-right">
+                <div class="header-search">
+                    <label class="header-search-bar search-active">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text" placeholder="Search..." id="searchInput">
+                        <i class="fa-solid fa-xmark" onclick="clearSearch()"></i>
+                    </label>
+                    <div class="header-search-dropdown">
+                        <a href="./../" class="hsd-item" data-keys="download plugin download library">
+                            <span class="hsd-heading">Download</span>
+                            <span class="hsd-nav">Home</span>
+                        </a>
+                        <a href="./../start/overview" class="hsd-item" data-keys="client side routing prevent page refresh serve non-existent urls serve non-existent files features">
+                            <span class="hsd-heading">Features Overview</span>
+                            <span class="hsd-nav">Get Started</span>
+                        </a>
+                        <a href="./../start/faqs" class="hsd-item" data-keys="how can I add vanilla router to my project how can I add a router to my project how can I add a 404 page set a route in subdirectories subfolders script tags head tag not found how to use">
+                            <span class="hsd-heading">FAQs</span>
+                            <span class="hsd-nav">Get Started</span>
+                        </a>
+                        <a href="./../start/examples" class="hsd-item" data-keys="examples example github demo">
+                            <span class="hsd-heading">Examples</span>
+                            <span class="hsd-nav">Get Started</span>
+                        </a>
+                        <a href="./../start/installation" class="hsd-item" data-keys="install installation cdn download">
+                            <span class="hsd-heading">Installation</span>
+                            <span class="hsd-nav">Get Started</span>
+                        </a>
+                        <a href="./../routing/create-a-router" class="hsd-item" data-keys="how to create a router">
+                            <span class="hsd-heading">Create a Router</span>
+                            <span class="hsd-nav">Routing</span>
+                        </a>
+                        <a href="./../routing/giving-a-link" class="hsd-item" data-keys="how to give a link how to provide a link">
+                            <span class="hsd-heading">Giving a Link</span>
+                            <span class="hsd-nav">Routing</span>
+                        </a>
+                        <a href="./../guides/server-configuration" class="hsd-item" data-keys="server side configuration apache server configuration htaccess">
+                            <span class="hsd-heading">Server-side Configuration</span>
+                            <span class="hsd-nav">Guides</span>
+                        </a>
+                        <a href="./../guides/contributing" class="hsd-item" data-keys="contributing">
+                            <span class="hsd-heading">Contributing</span>
+                            <span class="hsd-nav">Guides</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="has-code">
+            <div class="container">
+                <h1>Create a Router</h1>
+
+                <h2>How can I use a router?</h2>
+                <p>Add the contents of the &lt;head&gt; tag that you want to run globally in your index file. The same goes for &lt;script&gt; tags that will run globally.</p>
+                <p>If you want to run the &lt;head&gt; tag content and &lt;script&gt; tags only when the page is active, you should use it as shown in the examples below.</p>
+                
+                <h2>What should be considered when using a router?</h2>
+                <p style="margin-bottom: 10px;"><b>&lt;a&gt;:</b> If a route is wanted to be activated without refreshing the page, it is required to use the target="_self" attribute.</p>
+                <p style="margin-bottom: 10px;"><b>&lt;router-root&gt;:</b> The data-root attribute is required for the router-root component. You should remove the domain and add the directory as attribute.</p>
+                <p style="margin-bottom: 10px;"><b>&lt;router-page&gt;:</b> The data-path and data-src attributes is required for the router-page component. You must specify which url to listen to in the data-path attribute and which file to run in the data-src attribute.</p>
+
+                <h2>Simple usage examples</h2>
+                <p style="margin-bottom: 40px;">Below are simple examples of how you can use it.</p>
+
+                <h3 style="margin-bottom: 10px;">/project/index.html</h3>
+                <pre class="code" style="margin-bottom: 60px;"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;!-- Global head content --&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    
+    &lt;!-- Global layout --&gt;
+    &lt;nav&gt;
+        &lt;a href="./" target="_self"&gt;Home&lt;/a&gt;
+        &lt;a href="./about" target="_self"&gt;About&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;!-- Routed area & Routing configs --&gt;
+    &lt;router-root data-root="/project/"&gt;
+        &lt;router-page data-path="*" data-src="pages/404.html" /&gt;
+        &lt;router-page data-path="./" data-src="pages/home.html" /&gt;
+        &lt;router-page data-path="./about" data-src="pages/about.html" /&gt;
+    &lt;/router-root&gt;
+
+    &lt;!-- Global Javascript --&gt;
+    &lt;script src="./src/router.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <h3 style="margin-bottom: 10px;">/project/pages/home.html</h3>
+                <pre class="code" style="margin-bottom: 60px;"><code class="language-html">&lt;!-- The &lt;head&gt; tag content that will only be executed if the route is active --&gt;
+&lt;head&gt;
+    &lt;title&gt;Home | Router&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;!-- Using the &lt;div&gt; tag as shown in the example is not mandatory. Any tag can be used. --&gt;
+&lt;!-- All content, excluding &lt;head&gt; and &lt;script&gt; tags, will be considered valid for the new page. --&gt;
+&lt;div&gt;
+    Home page content
+&lt;/div&gt;
+
+&lt;!-- The &lt;script&gt; tag that will only be executed if the route is active --&gt;
+&lt;script src="./src/home.js"&gt;</code></pre>
+
+                <h3 style="margin-bottom: 10px;">/project/pages/about.html</h3>
+                <pre class="code" style="margin-bottom: 60px;"><code class="language-html">&lt;head&gt;
+    &lt;title&gt;About | Router&lt;/title&gt;
+&lt;/head&gt;
+                
+&lt;div&gt;
+    About page content
+&lt;/div&gt;
+                
+&lt;script src="./src/about.js"&gt;</code></pre>
+
+                <h3 style="margin-bottom: 10px;">/project/pages/404.html</h3>
+                <pre class="code" style="margin-bottom: 60px;"><code class="language-html">&lt;head&gt;
+    &lt;title&gt;Page not found | Router&lt;/title&gt;
+&lt;/head&gt;
+                
+&lt;div&gt;
+    404 page content
+&lt;/div&gt;</code></pre>
+
+            </div>
+        </section>
+
+        <footer id="footer">
+            <div class="container">
+                <span><span>Vanilla Router Dom | Powered by</span> <a href="https://github.com/can-erturk/">Can Erturk</a></span>
+            </div>
+        </footer>
+    </main>
+
+    <script src="./../dist/js/main.js"></script>
+</body>
+</html>
