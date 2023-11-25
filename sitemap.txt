@@ -1,0 +1,9 @@
+https://vanillarouter.js.org/index.html
+https://vanillarouter.js.org/start/examples.html
+https://vanillarouter.js.org/start/faqs.html
+https://vanillarouter.js.org/start/installation.html
+https://vanillarouter.js.org/start/overview.html
+https://vanillarouter.js.org/routing/create-a-router.html
+https://vanillarouter.js.org/routing/giving-a-link.html
+https://vanillarouter.js.org/guides/contributing.html
+https://vanillarouter.js.org/guides/server-configuration.html
